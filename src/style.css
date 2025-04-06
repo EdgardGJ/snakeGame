@@ -71,3 +71,31 @@ body {
         font-size: 1rem;
     }
 }
+
+#gameOver-screen {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    height: 60vh;
+    width: 80vh;
+    align-items: center;
+    justify-content: center;
+    background: #b4dceb;
+    border: 5px solid black;
+    border-radius: 5vh;
+}
+#gameOver-screen img {
+    max-width: 30%;
+}
+#gameOver-screen button {
+    margin: 15px 0 0 0;
+    background: #212837;
+    color: #b4dceb;
+    font-size:15px;
+    height: 6vh;
+    width: 10vh;
+    border-radius: 2vh;
+    cursor: pointer;
+}

@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="shortcut icon" href="/img/snake-game-512.webp" type="image/x-icon">
     <script src="script.js" defer></script>
     <title>Snake Game | BatCat</title>
 </head>
 <body>
+    <div id="gameOver-screen" class="gameIn">
+        <h1 class="textMessage">Game Over!</h1>
+        <img src="/img/crysnake.png" alt="Snake Crying">
+        <p id="message">Youre score was: </p>
+        <button id="restartButton" onclick="handleGameOver()">Restart</button>
+    </div>
     <div class="wrapper">
         <div class="game-details">
             <span class="score">Score: 0</span>
@@ -22,5 +29,8 @@
             <i data-key="ArrowDown" class="fa-solid fa-arrow-down-long"></i>
         </div>
     </div>
+    <audio id="audioGame" src="/music/game-music-loop-7-145285.mp3" autoplay loop></audio>
+    <audio id="gameOverAudio" src="/music/game-over-arcade-6435.mp3"></audio>
+    <audio id="pointsAudio" src="/music/game-start-6104.mp3"></audio>
 </body>
 </html>

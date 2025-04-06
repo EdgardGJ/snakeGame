@@ -4,6 +4,7 @@ let highScoreElement = document.querySelector(".high-score")
 const controls = document.querySelectorAll(".controls i")
 
 let gameOver = false
+let gameOverAudioPlayed = false
 let foodX, foodY
 let snakeX = 5, snakeY = 10
 let snakeBody = []
@@ -50,11 +51,39 @@ controls.forEach(key => {
 })
 
 const initGame = () => {
-    if(gameOver) return handleGameOver()
+    if(gameOver) {
+    let screen = document.getElementById('gameOver-screen')
+    screen.style.display = "flex"
+
+    let gameAudio = document.getElementById('audioGame')
+    gameAudio.pause()
+    let gameOverAudio = document.getElementById('gameOverAudio')
+
+    if(!gameOverAudioPlayed) {
+        gameOverAudio.play()
+        gameOverAudioPlayed = true
+    }
+
+    let message = document.getElementById("message")
+    message.innerText = `You're score was: ${score}`
+
+    window.addEventListener('keypress', function(event) {
+        console.log('event wait')
+        console.log(event)
+        if(event.key === 'Enter') {
+            console.log('Restart Buttton pressed by enter key')
+            handleGameOver()
+        }
+    })
+
+    }
     let htmlMarkup = `<div class="food" style="grid-area: ${foodY} / ${foodX}"></div>`
 
     // Checking if the snake hit the food
     if(snakeX === foodX && snakeY === foodY) {
+        let pointAudio = document.getElementById('pointsAudio')
+        pointAudio.play()
+
         changeFoodPosition()
         snakeBody.push([foodX, foodY]) // Pushing food position to snake body array
         score++ // Increment score by 1
