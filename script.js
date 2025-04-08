@@ -116,6 +116,50 @@ const initGame = () => {
     }
     PlayBoard.innerHTML = htmlMarkup
 }
+
+// News functions for moviles device
+let touchStartX
+let touchStartY
+
+PlayBoard.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX
+    touchStartY = e.touches[0].clientY
+})
+PlayBoard.addEventListener('touchend', (e) => {
+    if (!touchStartX || !touchStartY) {
+        return;
+}
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+
+    const diffX = touchEndX - touchStartX;
+    const diffY = touchEndY - touchStartY;
+
+    // Determine the swipe direction (adjust the thresholds as needed)
+    const minSwipeDistance = 25; // Minimum distance to consider a swipe
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        // Horizontal Swipe 
+        if (diffX > minSwipeDistance && velocityX !== -1) {
+            changeDirection({ key: 'ArrowRight' });
+        } else if (diffX < -minSwipeDistance && velocityX !== 1) {
+            changeDirection({ key: 'ArrowLeft' });
+        }
+    } else {
+        // Vertical Swipe 
+        if (diffY > minSwipeDistance && velocityY !== -1) {
+            changeDirection({ key: 'ArrowDown' });
+        } else if (diffY < -minSwipeDistance && velocityY !== 1) {
+            changeDirection({ key: 'ArrowUp' });
+        }
+    }
+
+    // Reset the initial touch positions
+    touchStartX = null;
+    touchStartY = null;
+    
+})
+
 changeFoodPosition()
 setIntervalId = setInterval(initGame, 125)
 document.addEventListener("keydown", changeDirection)

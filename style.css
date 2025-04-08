@@ -40,6 +40,7 @@ body {
 .play-board .head {
     background: #60cbff;
 }
+/* We have this part hidden for futures featurings in movile device
 .controls {
     display: none;
     justify-content: space-between;
@@ -71,6 +72,7 @@ body {
         font-size: 1rem;
     }
 }
+*/
 
 #gameOver-screen {
     display: none;
@@ -78,8 +80,8 @@ body {
     position: absolute;
     margin: 0;
     padding: 0;
-    height: 60vh;
-    width: 80vh;
+    height: 60vmin;
+    width: 80vmin;
     align-items: center;
     justify-content: center;
     background: #b4dceb;
